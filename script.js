@@ -26,9 +26,17 @@
     el.append(media); slidesRoot.append(el); return el;
   });
   function stop() {
-    clearTimeout(timer);
-    nodes.forEach(n => { const v = n.querySelector('video'); if (v) { v.pause(); v.currentTime = 0; } });
-  }
+  clearTimeout(timer);
+  timer = null;
+
+  nodes.forEach(n => {
+    const v = n.querySelector('video');
+    if (v) {
+      v.pause();
+      v.currentTime = 0;
+    }
+  });
+}
   function showSlide(i) {
     if (!items.length) return;
     stop(); index = (i + items.length) % items.length;
